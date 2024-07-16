@@ -15,3 +15,4 @@ Este repositório contém um script Terraform que cria uma máquina virtual na A
    ```sh
    git clone https://github.com/seu-usuario/terraform-azure-docker-wordpress.git
    cd terraform-azure-docker-wordpress
+
