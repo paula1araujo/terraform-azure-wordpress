@@ -84,19 +84,19 @@ resource "azurerm_virtual_machine" "vm" {
     disable_password_authentication = false
   }
 
+  connection {
+    type     = "ssh"
+    user     = "adminuser"
+    password = "Password1234!"
+    host     = azurerm_public_ip.public_ip.ip_address
+  }
+
   provisioner "file" {
     source      = "install_docker.sh"
     destination = "/tmp/install_docker.sh"
   }
 
   provisioner "remote-exec" {
-    connection {
-      type     = "ssh"
-      user     = "adminuser"
-      password = "Password1234!"
-      host     = azurerm_public_ip.public_ip.ip_address
-    }
-
     inline = [
       "chmod +x /tmp/install_docker.sh",
       "sudo /tmp/install_docker.sh"
