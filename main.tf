@@ -72,7 +72,7 @@ resource "azurerm_virtual_machine" "vm" {
     disable_password_authentication = false
   }
 
-  provisioner "file" {
+  provisioner "file" (
     connection {
       type     = "ssh"
       user     = "adminuser"
@@ -81,7 +81,7 @@ resource "azurerm_virtual_machine" "vm" {
     }
     source      = "install_docker.sh"
     destination = "/tmp/install_docker.sh"
-  }
+  )
 
   provisioner "remote-exec" {
     connection {
