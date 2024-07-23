@@ -20,7 +20,7 @@ output "vm_name" {
   value = azurerm_virtual_machine.vm.name
 }
 
-# Saída para o endereço IP público
-output "public_ip" {
+# Saída para o endereço IP público da VM
+output "vm_public_ip" {
   value = azurerm_public_ip.public_ip.ip_address
 }
