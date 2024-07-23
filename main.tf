@@ -1,3 +1,5 @@
+# main.tf
+
 provider "azurerm" {
   features {}
 }
@@ -72,6 +74,14 @@ resource "azurerm_virtual_machine" "vm" {
     disable_password_authentication = false
   }
 
+  # Garantir que o provisionador depende do IP público estar disponível
+  depends_on = [azurerm_public_ip.public_ip]
+}
+
+# Recurso null para provisionamento
+resource "null_resource" "provision" {
+  depends_on = [azurerm_virtual_machine.vm]
+
   provisioner "file" {
     connection {
       type     = "ssh"
@@ -96,8 +106,3 @@ resource "azurerm_virtual_machine" "vm" {
     ]
   }
 }
-
-output "public_ip" {
-  value = azurerm_public_ip.public_ip.ip_address
-}
-
