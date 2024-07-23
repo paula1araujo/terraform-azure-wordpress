@@ -1,4 +1,4 @@
-Main tf anterior:
+
 provider "azurerm" {
   features {}
 }
